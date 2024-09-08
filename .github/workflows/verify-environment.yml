@@ -1,0 +1,29 @@
+name: Verify Building Environment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  BuildingEnvironment:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/setup-python@v5.2.0
+    - uses: actions/checkout@v4.1.7
+      with: 
+        repository: "ggerganov/llama.cpp"
+    - name: Verify catglm.cpp Env
+      run: |
+        python3 -m pip install -U pip
+        python3 -m pip install torch tabulate tqdm transformers accelerate sentencepiece
+        python3 -m pip install tiktoken
+    - name: Verify llama.cpp Env
+      run: |
+        sudo apt update && sudo apt install libopenblas-dev -y
+        python3 -m pip install -r requirements.txt
+    - name: Build llama.cpp
+      run: make GGML_OPENBLAS=1 -j 8

@@ -20,9 +20,11 @@ jobs:
     - uses: actions/checkout@v4.1.7
       with: 
         repository: "ggerganov/llama.cpp"
+    - name: SET ENV
+      run: export WORK_PATH=$GITHUB_WORKSPACE/works
     - name: Verify ENV
       run: |
-        echo WORK_PATH=$GITHUB_WORKSPACE
+        echo WORK_PATH=$WORK_PATH
         ls -lha $GITHUB_WORKSPACE
     - name: Verify catglm.cpp Env
       run: |

@@ -36,7 +36,7 @@ jobs:
     - name: build llama.cpp
       run: ./environment/llama.cpp.sh
     - name: pull model
-      run: echo ./chatglm/download-model.sh
+      run: ./chatglm/download-model.sh
     - name: quantize llama
       run: ./chatglm/quantize-mode-llama.sh
     - name: quantize chatglm

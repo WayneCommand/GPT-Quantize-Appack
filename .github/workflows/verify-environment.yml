@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  CARGO_TERM_COLOR: always
+  WORK_PATH: $GITHUB_WORKSPACE/works
+
 jobs:
   BuildingEnvironment:
 
@@ -16,6 +20,10 @@ jobs:
     - uses: actions/checkout@v4.1.7
       with: 
         repository: "ggerganov/llama.cpp"
+    - name: Verify ENV
+      run: |
+        echo WORK_PATH=$WORK_PATH
+        ls -lha $GITHUB_WORKSPACE
     - name: Verify catglm.cpp Env
       run: |
         python3 -m pip install -U pip
@@ -27,3 +35,5 @@ jobs:
         python3 -m pip install -r requirements.txt
     - name: Build llama.cpp
       run: make GGML_OPENBLAS=1 -j 8
+
+      

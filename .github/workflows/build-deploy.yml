@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  WORK_PATH: "/home/runner/work/GPT-Quantize-Appack/GPT-Quantize-Appack/works"
 
 jobs:
   DeployModel:
@@ -27,6 +28,8 @@ jobs:
         remove-docker-images: 'true'
     - uses: actions/setup-python@v5.2.0
     - uses: actions/checkout@v4.1.7
+    - name: make build path
+      run: mkdir -p $WORK_PATH
     - name: build chatglm.cpp
       run: ./environment/chatglm.cpp.sh
     - name: build llama.cpp

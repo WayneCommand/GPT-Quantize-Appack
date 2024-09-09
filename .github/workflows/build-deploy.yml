@@ -8,7 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  WORK_PATH: "/home/runner/work/GPT-Quantize-Appack/GPT-Quantize-Appack/works"
+  WORK_PATH: ${GITHUB_WORKSPACE}/works
 
 jobs:
   DeployModel:

@@ -1,9 +1,12 @@
 #!/bin/bash
+DEFAULT_WORK_PATH=/tmp/works
+RUNNING_PATH=${WORK_PATH-$DEFAULT_WORK_PATH}
+
 # output model files
-mkdir -p /tmp/models
+mkdir -p $RUNNING_PATH/models
 
 # clone repo
-cd /tmp
+cd $RUNNING_PATH
 git clone https://github.com/ggerganov/llama.cpp.git
 
 ## install dependency

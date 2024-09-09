@@ -1,6 +1,9 @@
 #!/bin/bash
-mkdir /tmp/models
+DEFAULT_WORK_PATH=/tmp/works
+RUNNING_PATH=${WORK_PATH-$DEFAULT_WORK_PATH}
 
-python3 /tmp/chatglm.cpp/chatglm_cpp/convert.py -i /tmp/GLM-4-9B-Chat -t q4_0 -o /tmp/models/chatglm-ggml.bin
+mkdir $RUNNING_PATH/models
+
+python3 $RUNNING_PATH/chatglm.cpp/chatglm_cpp/convert.py -i $RUNNING_PATH/GLM-4-9B-Chat -t q4_0 -o $RUNNING_PATH/models/chatglm-ggml.bin
 
 # GGML model saved to /tmp/models/chatglm-ggml.bin

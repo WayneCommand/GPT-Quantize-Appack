@@ -25,3 +25,12 @@ The main goal of `llama.cpp` is to enable LLM inference with minimal setup and s
 4. Quantize to  to **GGUF** format, use Q4_K_M.
 
 then, you can use it.
+
+## ENV
+
+### WORK_PATH
+
+DEFAULT_WORK_PATH=/tmp/works
+WORK_PATH={your_work_path}
+
+RUNNING_PATH=${WORK_PATH-$DEFAULT_WORK_PATH}

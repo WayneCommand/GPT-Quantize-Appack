@@ -12,6 +12,6 @@ python3 -m pip install -U pip
 python3 -m pip install torch tabulate tqdm transformers accelerate sentencepiece
 
 # quantize requires
-python3 -m pip install tiktoken tabulate
+python3 -m pip install tiktoken tabulate accelerate
 
 

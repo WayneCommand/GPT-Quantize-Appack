@@ -17,6 +17,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 10240
+        swap-size-mb: 512
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        remove-codeql: 'true'
+        remove-docker-images: 'true'
     - uses: actions/setup-python@v5.2.0
     - uses: actions/checkout@v4.1.7
     - name: set ENV
@@ -27,16 +37,6 @@ jobs:
       run: ./environment/chatglm.cpp.sh
     - name: build llama.cpp
       run: echo 'pause build ./environment/llama.cpp.sh'
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 2048
-        swap-size-mb: 512
-        remove-dotnet: 'true'
-        remove-android: 'true'
-        remove-haskell: 'true'
-        remove-codeql: 'true'
-        remove-docker-images: 'true'
     - name: Configure AWS Credentials
       run: |
         sudo apt update
@@ -44,10 +44,10 @@ jobs:
         aws configure set aws_access_key_id ${{ secrets.AWS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }}
     - name: pull model
-      run: aws s3 cp s3://wayne/glm-4-9b-chat ${WORK_PATH}/GLM-4-9B-Chat --recursive --endpoint-url=https://s3.tebi.io
-    - name: quantize llama
-      run: echo 'pause run ./chatglm/quantize-mode-llama.sh'
+      run: aws s3 cp s3://wayne/glm-4-9b-chat ${WORK_PATH}/GLM-4-9B-Chat --recursive --endpoint-url=https://s3.tebi.io --only-show-errors
     - name: pwd
       run: pwd && ls -lha
+    - name: quantize llama
+      run: echo 'pause run ./chatglm/quantize-mode-llama.sh'
     - name: quantize chatglm
       run: ./chatglm/quantize-model-chatglm.sh

@@ -35,12 +35,12 @@ jobs:
       run: ./environment/chatglm.cpp.sh
     - name: build llama.cpp
       run: ./environment/llama.cpp.sh
-    - name: Configure AWS Credentials 2
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        aws-region: us-east-2
-        aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_KEY }}
+    - name: Configure AWS Credentials
+      run: |
+        apt update
+        apt install awscli -y
+        aws configure set aws_access_key_id ${{ secrets.AWS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }}
     - name: pull model
       run: aws s3 cp s3://wayne/glm-4-9b-chat ${WORK_PATH}/glm-4-9b-chat --recursive --endpoint-url=https://s3.tebi.io
     - name: quantize llama

@@ -48,4 +48,6 @@ jobs:
     - name: quantize llama
       run: echo 'pause run ./chatglm/quantize-mode-llama.sh'
     - name: quantize chatglm
-      run: ./chatglm/quantize-model-chatglm.sh
+      run: | 
+        cd /home/runner/work/GPT-Quantize-Appack/GPT-Quantize-Appack
+        ./chatglm/quantize-model-chatglm.sh

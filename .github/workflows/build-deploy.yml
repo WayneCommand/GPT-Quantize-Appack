@@ -43,7 +43,7 @@ jobs:
         aws configure set aws_access_key_id ${{ secrets.AWS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }}
     - name: pull model
-      run: aws s3 cp s3://wayne/glm-4-9b-chat ${WORK_PATH}/glm-4-9b-chat --recursive --endpoint-url=https://s3.tebi.io
+      run: aws s3 cp s3://wayne/glm-4-9b-chat ${WORK_PATH}/GLM-4-9B-Chat --recursive --endpoint-url=https://s3.tebi.io
     - name: quantize llama
       run: echo 'pause run ./chatglm/quantize-mode-llama.sh'
     - name: quantize chatglm

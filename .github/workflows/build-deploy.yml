@@ -37,8 +37,8 @@ jobs:
       run: ./environment/llama.cpp.sh
     - name: Configure AWS Credentials
       run: |
-        apt update
-        apt install awscli -y
+        sudo apt update
+        sudo apt install awscli -y
         aws configure set aws_access_key_id ${{ secrets.AWS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }}
     - name: pull model

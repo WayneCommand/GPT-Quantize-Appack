@@ -26,7 +26,7 @@ jobs:
     - name: build chatglm.cpp
       run: ./environment/chatglm.cpp.sh
     - name: build llama.cpp
-      run: echo 'pause build ./environment/llama.cpp.sh'
+      run: ./environment/llama.cpp.sh
     - name: Configure AWS Credentials
       run: |
         python3 -m pip install awscli --break-system-packages
@@ -37,6 +37,6 @@ jobs:
     - name: pwd
       run: pwd && ls -lha
     - name: quantize llama
-      run: echo 'pause run ./chatglm/quantize-mode-llama.sh'
+      run: ./chatglm/quantize-mode-llama.sh
     - name: quantize chatglm
       run: ./chatglm/quantize-model-chatglm.sh

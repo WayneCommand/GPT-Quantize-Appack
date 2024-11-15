@@ -29,8 +29,7 @@ jobs:
       run: echo 'pause build ./environment/llama.cpp.sh'
     - name: Configure AWS Credentials
       run: |
-        sudo apt update
-        sudo apt install awscli -y
+        python3 -m pip install awscli --break-system-packages
         aws configure set aws_access_key_id ${{ secrets.AWS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }}
     - name: pull model

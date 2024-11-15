@@ -8,10 +8,10 @@ cd $RUNNING_PATH
 git clone --recursive https://github.com/li-plus/chatglm.cpp.git && cd chatglm.cpp
 
 # pip install
-python3 -m pip install -U pip
-python3 -m pip install torch tabulate tqdm transformers accelerate sentencepiece
+python3 -m pip install -U pip --break-system-packages
+python3 -m pip install torch tabulate tqdm transformers accelerate sentencepiece --break-system-packages
 
 # quantize requires
-python3 -m pip install tiktoken tabulate accelerate
+python3 -m pip install tiktoken tabulate accelerate --break-system-packages
 
 
